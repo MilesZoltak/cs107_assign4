@@ -1,0 +1,119 @@
+# File: custom_tests
+# ------------------
+# This file contains a list of custom tests to be run by the sanity check tool.
+# Refer to the CS107 website for more information.
+#
+# Below are example custom tests, you can edit this file to change or add new tests.
+
+myls -a /afs/ir/class/cs107/samples
+
+#my tests
+    #testing myls
+        #regular run of the mill myls
+            myls
+        #testing the -z flag
+            myls ~ -z
+        #testing the -a flag
+            myls samples
+        #both flags???
+            myls ~ -a -z
+        #several directories
+            myls ~ samples ~/assign4
+        #bad directory
+            myls torple
+        #several bad directories
+            myls tweedledee tweedledum
+        #some good some bad, just like life
+            myls ~ nuts ~/assign4 . blahblahblah
+
+
+    #testing binsert
+        #inserting an int
+            test_binsert -i 4
+        #inserting a string
+            test_binsert -s hello
+        #inserting several ints in order
+            test_binsert -i 1 2 3 4
+        #inserting strings
+            test_binsert -s aaa bbb ccc ddd
+        #now they're coming out of order!!!
+            test_binsert -i 2 5 3 7 2 3
+        #and do it for strings too
+            test_binsert -s hello wolrd i hope this program works
+        #expect strings but get ints
+            test_binsert -s  1 4 3 54 34
+        #vice versa
+            test_binsert -i to be or no to be
+        #several of the same int
+            test_binsert -i 4 4 4 4
+        #several of he same string
+            test_binsert -s string string string string
+
+
+    #testing mysort
+        #regular default call to a simple file
+            mysort samples/colors
+        #do the above, but in reverse!
+            mysort -r samples/colors
+        #try the sorting flags out without -u
+            mysort -l samples/colors
+            mysort -n samples/colors
+        #try out uniq on a small input
+            mysort -u samples/colors
+        #reverse it!
+            mysort -u -r samples/colors
+        #now add sorting flags
+            mysort -u -l samples/colors
+            mysort -u -n samples/colors
+
+        #scaling up to a larger file but going to run all the same tests
+        #regular default call to a simple file
+            mysort samples/names
+        #do the above, but in reverse!
+            mysort -r samples/names
+        #try the sorting flags out without -u
+            mysort -l samples/names
+            mysort -n samples/names
+        #try out uniq on a small input
+            mysort -u samples/names
+        #reverse it!
+            mysort -u -r samples/names
+        #now add sorting flags
+            mysort -u -l samples/names
+            mysort -u -n samples/names
+
+        #scaling up once more to even larger file size, bum bum bum
+        #regular default call to a simple file
+            mysort samples/numbers
+        #do the above, but in reverse!
+            mysort -r samples/numbers
+        #try the sorting flags out without -u
+            mysort -l samples/numbers
+            mysort -n samples/numbers
+        #try out uniq on a small input
+            mysort -u samples/numbers
+        #reverse it!
+            mysort -u -r samples/numbers
+        #now add sorting flags
+            mysort -u -l samples/numbers
+            mysort -u -n samples/numbers
+
+        #test on some weird files too
+            #like an empty file!!!
+                mysort empty
+                mysort -r empty
+                mysort -u empty
+                mysort -l -u empty
+                mysort -n empty
+            #or a file with a bunch of blank lines
+                mysort empty_lines_only
+                mysort -r empty_lines_only
+                mysort -u empty_lines_only
+                mysort -l -u empty_lines_only
+                mysort -n empty_lines_only
+            #or a file with a bunch of strings (newline, letters/symbols) and numbers???
+                mysort various_types
+                mysort -r various_types
+                mysort -u various_types
+                mysort -l -u various_types
+                mysort -n various_types
